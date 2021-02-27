@@ -45,24 +45,33 @@ class App extends Component {
   render() {
     const { miGente, showMiGente } = this.state;
     const { cambiaNombreHandler, nombreDeFormHandler, toggleMiGente } = this;
+    
+    let persons = null;
+
+    if (this.state.showMiGente) {
+      persons = (
+        <div>
+          <Person 
+            nombre={miGente[0].nombre} 
+            trabajo={miGente[0].trabajo} >Adivina cual soy</ Person>
+          <Person 
+            nombre={miGente[1].nombre} 
+            trabajo={miGente[1].trabajo} 
+            switchName={cambiaNombreHandler.bind(this, 'Max')}
+            changed={nombreDeFormHandler}/>
+          <Person 
+            nombre={miGente[2].nombre} 
+            trabajo={miGente[2].trabajo} />
+        </div> 
+      );
+    }
+
+
     return (
       <div className="App">
         <button onClick={toggleMiGente}>Show People</button>
-        { showMiGente ? 
-          <div>
-            <Person 
-              nombre={miGente[0].nombre} 
-              trabajo={miGente[0].trabajo} >Adivina cual soy</ Person>
-            <Person 
-              nombre={miGente[1].nombre} 
-              trabajo={miGente[1].trabajo} 
-              switchName={cambiaNombreHandler.bind(this, 'Max')}
-              changed={nombreDeFormHandler}/>
-            <Person 
-              nombre={miGente[2].nombre} 
-              trabajo={miGente[2].trabajo} />
-          </div> : null
-        }
+         
+        {persons}
       </div>
     );
 
