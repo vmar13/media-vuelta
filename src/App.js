@@ -14,11 +14,12 @@ class App extends Component {
   bolivia: 'La Paz'
 }
 
-cambiaNombreHandler = () => {
-  this.setState({ miGente: [
-    { nombre: 'Romeo Santos', trabajo: 'cantante' },
-    { nombre: 'Maria Elena Salinas', trabajo: 'periodista' },
-    { nombre: 'Salvador Dalí', trabajo: 'artista' }
+cambiaNombreHandler = (nuevoNombre) => {
+  this.setState({ 
+    miGente: [
+      { nombre: nuevoNombre, trabajo: 'cantante' },
+      { nombre: 'Maria Elena Salinas', trabajo: 'periodista' },
+      { nombre: 'Salvador Dalí', trabajo: 'artista' }
   ]})
   // this.setState({
   //   miGente: [...this.state.miGente, {nombre: 'Salvador Dali', trabajo: 'artista'}]
@@ -26,10 +27,18 @@ cambiaNombreHandler = () => {
   // console.log(this.state.miGente)
 }
   
+nombreDeFormHandler = (event) => {
+  this.setState({ 
+    miGente: [
+      { nombre: 'Max', trabajo: 'cantante' },
+      { nombre:  event.target.value, trabajo: 'periodista' },
+      { nombre: 'Salvador Dalí', trabajo: 'artista' }
+  ]})
+}
 
   render() {
     const { miGente } = this.state;
-    const { cambiaNombreHandler } = this;
+    const { cambiaNombreHandler, nombreDeFormHandler } = this;
     return (
       <div className="App">
         <button onClick={cambiaNombreHandler}>Cambia de Nombre</button>
@@ -39,10 +48,11 @@ cambiaNombreHandler = () => {
         <Person 
           nombre={miGente[1].nombre} 
           trabajo={miGente[1].trabajo} 
-          switchName={cambiaNombreHandler}/>
+          switchName={cambiaNombreHandler.bind(this, 'Max')}/>
         <Person 
           nombre={miGente[2].nombre} 
-          trabajo={miGente[2].trabajo} />
+          trabajo={miGente[2].trabajo}
+          changed={nombreDeFormHandler} />
       </div>
     );
 
