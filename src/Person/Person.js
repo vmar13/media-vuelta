@@ -6,7 +6,7 @@ const Person = (props) => {
     return (
         <div>
             <h4>{children}</h4>
-            <p>Me llamo {nombre} y soy un {trabajo}.</p>
+            <p>Me llamo {nombre} y soy un/a {trabajo}.</p>
         </div>
     )
 }
