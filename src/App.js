@@ -48,21 +48,15 @@ class App extends Component {
     
     let persons = null;
 
-    if (this.state.showMiGente) {
+    if (showMiGente) {
       persons = (
         <div>
-          <Person 
-            nombre={miGente[0].nombre} 
-            trabajo={miGente[0].trabajo} >Adivina cual soy</ Person>
-          <Person 
-            nombre={miGente[1].nombre} 
-            trabajo={miGente[1].trabajo} 
-            switchName={cambiaNombreHandler.bind(this, 'Max')}
-            changed={nombreDeFormHandler}/>
-          <Person 
-            nombre={miGente[2].nombre} 
-            trabajo={miGente[2].trabajo} />
-        </div> 
+          {miGente.map(person => {
+            return <Person 
+              nombre={person.nombre}
+              trabajo={person.trabajo} />
+          })}
+        </div>
       );
     }
 
@@ -70,7 +64,6 @@ class App extends Component {
     return (
       <div className="App">
         <button onClick={toggleMiGente}>Show People</button>
-         
         {persons}
       </div>
     );
@@ -104,3 +97,18 @@ export default App;
 //     //   miGente: [{nombre: 'Salvador Dali', trabajo: 'artista'}]
 //     // })
 // }
+
+
+{/* <div>
+          <Person 
+            nombre={miGente[0].nombre} 
+            trabajo={miGente[0].trabajo} >Adivina cual soy</ Person>
+          <Person 
+            nombre={miGente[1].nombre} 
+            trabajo={miGente[1].trabajo} 
+            switchName={cambiaNombreHandler.bind(this, 'Max')}
+            changed={nombreDeFormHandler}/>
+          <Person 
+            nombre={miGente[2].nombre} 
+            trabajo={miGente[2].trabajo} />
+        </div>  */}
