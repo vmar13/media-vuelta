@@ -14,19 +14,6 @@ class App extends Component {
     bolivia: 'La Paz',
     showMiGente: false
 }
-
-  cambiaNombreHandler = (nuevoNombre) => {
-    this.setState({ 
-      miGente: [
-        { nombre: nuevoNombre, trabajo: 'cantante' },
-        { nombre: 'Maria Elena Salinas', trabajo: 'periodista' },
-        { nombre: 'Salvador Dalí', trabajo: 'artista' }
-    ]})
-    // this.setState({
-    //   miGente: [...this.state.miGente, {nombre: 'Salvador Dali', trabajo: 'artista'}]
-    // })
-    // console.log(this.state.miGente)
-  }
   
   nombreDeFormHandler = (event) => {
     this.setState({ 
@@ -37,6 +24,13 @@ class App extends Component {
     ]})
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.miGente;
+    persons.splice(personIndex, 1);
+    this.setState({ miGente: persons })
+
+  }
+
   toggleMiGente = () => {
     const doesShow = this.state.showMiGente;
     this.setState({ showMiGente: !doesShow })
@@ -44,15 +38,16 @@ class App extends Component {
 
   render() {
     const { miGente, showMiGente } = this.state;
-    const { cambiaNombreHandler, nombreDeFormHandler, toggleMiGente } = this;
+    const { nombreDeFormHandler, toggleMiGente, deletePersonHandler } = this;
     
     let persons = null;
 
     if (showMiGente) {
       persons = (
         <div>
-          {miGente.map(person => {
+          {miGente.map((person, index) => {
             return <Person 
+              removePerson={() => deletePersonHandler(index)}
               nombre={person.nombre}
               trabajo={person.trabajo} />
           })}
