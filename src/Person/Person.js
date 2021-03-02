@@ -6,9 +6,7 @@ const Person = (props) => {
 
     return (
         <div>  
-           
             <h4>{children}</h4>
-
             <div className='Person'>
                 <p onClick={removePerson}>Me llamo {nombre} y soy un/a {trabajo}.</p>
                 <input type='text' onChange={changed} value={nombre} />

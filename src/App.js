@@ -1,64 +1,75 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
 
   state = {
-    miGente: [
-      { nombre: 'Luis Miguel', trabajo: 'cantante' },
-      { nombre: 'Jorge Ramos', trabajo: 'periodista' },
-      { nombre: 'Frida Kahlo', trabajo: 'artista' }
+    persons: [
+      {id: 1, nombre: 'Luis Miguel', trabajo: 'cantante' },
+      {id: 2, nombre: 'Jorge Ramos', trabajo: 'periodista' },
+      {id: 3, nombre: 'Frida Kahlo', trabajo: 'artista' }
     ],
     bolivia: 'La Paz',
-    showMiGente: false
+    showPersons: false
 }
   
-  nombreDeFormHandler = (event) => {
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id;
+    })
+
+    const person = {
+      ...this.state.persons[personIndex]
+    };
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     this.setState({ 
-      miGente: [
-        { nombre: 'Max', trabajo: 'cantante' },
-        { nombre:  event.target.value, trabajo: 'periodista' },
-        { nombre: 'Salvador Dalí', trabajo: 'artista' }
-    ]})
+      persons: persons })
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.miGente;
+    // const persons = this.state.persons.slice();
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
-    this.setState({ miGente: persons })
+    this.setState({ persons: persons })
 
   }
 
-  toggleMiGente = () => {
-    const doesShow = this.state.showMiGente;
-    this.setState({ showMiGente: !doesShow })
+  togglePersons = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow })
   }
 
   render() {
-    const { miGente, showMiGente } = this.state;
-    const { nombreDeFormHandler, toggleMiGente, deletePersonHandler } = this;
+    const { showPersons } = this.state;
+    const { nameChangedHandler, togglePersons, deletePersonHandler } = this;
     
     let persons = null;
 
-    if (showMiGente) {
+    if (showPersons) {
       persons = (
         <div>
-          {miGente.map((person, index) => {
+          {this.state.persons.map((person, index) => {
             return <Person 
+              key={person.id}
               removePerson={() => deletePersonHandler(index)}
               nombre={person.nombre}
-              trabajo={person.trabajo} />
+              trabajo={person.trabajo}
+              changed={(event) => nameChangedHandler(event, person.id)} />
           })}
         </div>
       );
-    }
+    } 
 
 
     return (
       <div className="App">
-        <button onClick={toggleMiGente}>Show People</button>
+        <button onClick={togglePersons}>Show People</button>
         {persons}
       </div>
     );
@@ -68,8 +79,8 @@ class App extends Component {
 
 export default App;
 
-// const [ miGenteState, setMiGenteState ] = useState({
-//   miGente: [
+// const [ personsState, setpersonsState ] = useState({
+//   persons: [
 //       { nombre: 'Luis Miguel', trabajo: 'cantante' },
 //       { nombre: 'Jorge Ramos', trabajo: 'periodista' },
 //       { nombre: 'Frida Kahlo', trabajo: 'artista' }
@@ -78,32 +89,32 @@ export default App;
 
 // const [ bolivia, setBoliviaState ] = useState({ bolivia: 'La Paz' })
 
-// console.log(miGenteState, bolivia)
+// console.log(personsState, bolivia)
 
 // const cambiaNombreHandler = () => {
-//   setMiGenteState({ miGente: [
+//   setpersonsState({ persons: [
 //       { nombre: 'Romeo Santos', trabajo: 'cantante' },
 //       { nombre: 'Maria Elena Salinas', trabajo: 'periodista' },
 //       { nombre: 'Salvador Dalí', trabajo: 'artista' }
 //     ]
 //   })
 
-//     // setMiGenteState({
-//     //   miGente: [{nombre: 'Salvador Dali', trabajo: 'artista'}]
+//     // setpersonsState({
+//     //   persons: [{nombre: 'Salvador Dali', trabajo: 'artista'}]
 //     // })
 // }
 
 
 {/* <div>
           <Person 
-            nombre={miGente[0].nombre} 
-            trabajo={miGente[0].trabajo} >Adivina cual soy</ Person>
+            nombre={persons[0].nombre} 
+            trabajo={persons[0].trabajo} >Adivina cual soy</ Person>
           <Person 
-            nombre={miGente[1].nombre} 
-            trabajo={miGente[1].trabajo} 
+            nombre={persons[1].nombre} 
+            trabajo={persons[1].trabajo} 
             switchName={cambiaNombreHandler.bind(this, 'Max')}
-            changed={nombreDeFormHandler}/>
+            changed={nameChangedHandler}/>
           <Person 
-            nombre={miGente[2].nombre} 
-            trabajo={miGente[2].trabajo} />
+            nombre={persons[2].nombre} 
+            trabajo={persons[2].trabajo} />
         </div>  */}
