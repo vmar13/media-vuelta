@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Validation from './Validation/Validation';
 
 class App extends Component {
 
@@ -75,7 +76,7 @@ class App extends Component {
     return (
       <div className="App">
         <input text='text' onChange={lengthHandler} value={para}/>
-        <p>{para.length}</p>
+        <Validation para={para.length} />
         <button onClick={togglePersons}>Show People</button>
         {persons}
       </div>
