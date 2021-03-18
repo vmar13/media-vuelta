@@ -74,7 +74,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        
+        <input text='text' onChange={lengthHandler} value={para}/>
+        <p>{para.length}</p>
         <button onClick={togglePersons}>Show People</button>
         {persons}
       </div>
