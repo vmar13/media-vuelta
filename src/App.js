@@ -11,13 +11,12 @@ class App extends Component {
       {id: 3, nombre: 'Frida Kahlo', trabajo: 'artista' }
     ],
     bolivia: 'La Paz',
-    showPersons: false
+    showPersons: false,
+    para: ''
 }
   
   nameChangedHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(p => {
-      return p.id === id;
-    })
+    const personIndex = this.state.persons.findIndex(p => p.id === id)
 
     const person = {
       ...this.state.persons[personIndex]
@@ -25,6 +24,8 @@ class App extends Component {
 
     person.name = event.target.value;
 
+    //a copy of the old array with updated person
+    //where we adjusted the name
     const persons = [...this.state.persons];
     persons[personIndex] = person;
 
@@ -45,9 +46,13 @@ class App extends Component {
     this.setState({ showPersons: !doesShow })
   }
 
+  lengthHandler = event => {
+    this.setState({ para: event.target.value })
+  }
+
   render() {
-    const { showPersons } = this.state;
-    const { nameChangedHandler, togglePersons, deletePersonHandler } = this;
+    const { showPersons, para } = this.state;
+    const { nameChangedHandler, togglePersons, deletePersonHandler, lengthHandler } = this;
     
     let persons = null;
 
@@ -69,6 +74,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        
         <button onClick={togglePersons}>Show People</button>
         {persons}
       </div>
