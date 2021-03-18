@@ -22,7 +22,7 @@ class App extends Component {
       ...this.state.persons[personIndex]
     };
 
-    person.name = event.target.value;
+    person.nombre = event.target.value;
 
     //a copy of the old array with updated person
     //where we adjusted the name
