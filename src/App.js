@@ -76,7 +76,8 @@ class App extends Component {
     return (
       <div className="App">
         <input text='text' onChange={lengthHandler} value={para}/>
-        <Validation para={para.length} />
+        <Validation para={para.length} /><br/>
+        <hr />
         <button onClick={togglePersons}>Show People</button>
         {persons}
       </div>
