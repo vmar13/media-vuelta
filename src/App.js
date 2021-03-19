@@ -52,12 +52,22 @@ class App extends Component {
     this.setState({ para: event.target.value })
   }
 
+  deleteCharHandler = index => {
+    const text = this.state.para.split('');
+    text.splice(index, 1);
+    const updatedText = text.join('');
+    this.setState({ para: updatedText });
+  }
+
   render() {
     const { showPersons, para } = this.state;
-    const { nameChangedHandler, togglePersons, deletePersonHandler, lengthHandler } = this;
+    const { nameChangedHandler, togglePersons, deletePersonHandler, lengthHandler, deleteCharHandler } = this;
     
-    let charList = para.split('').map(char => {
-      return <Char character={char}/>
+    let charList = para.split('').map((char, index) => {
+      return <Char 
+        key={index} 
+        character={char} 
+        deleteChar={() => deleteCharHandler(index)}/>
     })
 
     let persons = null;

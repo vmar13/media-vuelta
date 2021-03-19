@@ -1,10 +1,12 @@
 import React from 'react';
+import './Char.css'
 
 const Char = props => {
+    const { character, deleteChar } = props
 
     return (
-        <div className='Char'>
-            {props.character} 
+        <div className='Char' onClick={deleteChar}>
+            {character} 
         </div>
     )
 }
