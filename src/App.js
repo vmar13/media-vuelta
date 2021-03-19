@@ -3,6 +3,7 @@ import './App.css';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
+import Radium from 'radium';
 
 class App extends Component {
 
@@ -120,8 +121,9 @@ class App extends Component {
 
   }
 }
-
-export default App;
+//This is a higher order component, which injects some extra syntax which 
+//will parse my styles and add other features
+export default Radium(App);
 
 // const [ personsState, setpersonsState ] = useState({
 //   persons: [

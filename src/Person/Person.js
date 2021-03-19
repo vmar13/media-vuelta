@@ -1,5 +1,6 @@
 import React from 'react';
 import './Person.css';
+import Radium from 'radium';
 
 const Person = (props) => {
     const { nombre, trabajo, children, changed, removePerson } = props
@@ -15,4 +16,4 @@ const Person = (props) => {
     )
 }
 
-export default Person;
+export default Radium(Person);
