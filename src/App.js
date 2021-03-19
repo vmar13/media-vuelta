@@ -96,10 +96,19 @@ class App extends Component {
       );
       style.backgroundColor = 'red';
     } 
-
+    //This is a class list
+    // let classes = ['red', 'bold'].join(' ');
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red'); //classes = ['red']
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold'); //classes = ['red', 'bold']
+    }
 
     return (
       <div className="App">
+        <p className={classes.join(' ')}>This is really working!</p>
         <input text='text' onChange={lengthHandler} value={para}/>
         <Validation paraLength={para.length} /><br/>
         {charList}
