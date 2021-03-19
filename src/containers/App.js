@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 // import styled from 'styled-components';
-import Person from './Person/Person';
-import Validation from './Validation/Validation';
-import Char from './Char/Char';
+import Person from '../components/People/Person/Person';
+
 
 // const StyledButton = styled.button`
 //   background-color: ${props => props.alt ? 'red' : 'green'};
@@ -62,16 +61,6 @@ class App extends Component {
     this.setState({ showPersons: !doesShow })
   }
 
-  lengthHandler = event => {
-    this.setState({ para: event.target.value })
-  }
-
-  deleteCharHandler = index => {
-    const text = this.state.para.split('');
-    text.splice(index, 1);
-    const updatedText = text.join('');
-    this.setState({ para: updatedText });
-  }
 
   render() {
     // const style = {
@@ -90,14 +79,7 @@ class App extends Component {
     let btnClass = [classes.Button];
 
     const { showPersons, para } = this.state;
-    const { nameChangedHandler, togglePersons, deletePersonHandler, lengthHandler, deleteCharHandler } = this;
-    
-    let charList = para.split('').map((char, index) => {
-      return <Char 
-        key={index} 
-        character={char} 
-        deleteChar={() => deleteCharHandler(index)}/>
-    })
+    const { nameChangedHandler, togglePersons, deletePersonHandler } = this;
 
     let persons = null;
 
@@ -129,9 +111,6 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <p className={assignedClasses.join(' ')}>This is really working!</p>
-        <input text='text' onChange={lengthHandler} value={para}/>
-        <Validation paraLength={para.length} /><br/>
-        {charList}
         <button className={btnClass.join(' ')} onClick={togglePersons}>
           Toggle People
         </button>
