@@ -1,19 +1,30 @@
 import React from 'react';
-import './Person.css';
-import Radium from 'radium';
+// import './Person.css';
+import styled from 'styled-components';
+
+//StyledDiv is a valid React component
+const StyledDiv = styled.div`
+    width: 60%;
+    margin: 16px auto;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 3px #ccc;
+    padding: 16px;
+    text-align: center;
+
+    @media (min-width: 500px) {
+        width: 450px;
+}`
 
 const Person = (props) => {
-    const { nombre, trabajo, children, changed, removePerson } = props
-
-    return (
-        <div>  
-            <h4>{children}</h4>
-            <div className='Person'>
-                <p onClick={removePerson}>Me llamo {nombre} y soy un/a {trabajo}.</p>
-                <input type='text' onChange={changed} value={nombre} />
-            </div>
-        </div>
+    const { nombre, trabajo, changed, removePerson } = props
+    
+    return ( 
+         //   {/* <div className='Person' style={style}> */}
+        <StyledDiv>
+            <p onClick={removePerson}>Me llamo {nombre} y soy un/a {trabajo}.</p>
+            <input type='text' onChange={changed} value={nombre} />
+        </StyledDiv>
     )
 }
 
-export default Radium(Person);
+export default Person;
