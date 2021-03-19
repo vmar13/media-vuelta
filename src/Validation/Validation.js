@@ -1,11 +1,11 @@
 import React from 'react';
 
 const Validation = props => {
-    const { para } = props
+    const { paraLength } = props
 
     let validationMsg = 'Text long enough';
 
-    if (para <= 5) {
+    if (paraLength <= 5) {
         validationMsg = 'Text too short';
     }
 

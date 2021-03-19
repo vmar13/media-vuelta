@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
+import Char from './Char/Char';
 
 class App extends Component {
 
@@ -55,6 +56,10 @@ class App extends Component {
     const { showPersons, para } = this.state;
     const { nameChangedHandler, togglePersons, deletePersonHandler, lengthHandler } = this;
     
+    let charList = para.split('').map(char => {
+      return <Char character={char}/>
+    })
+
     let persons = null;
 
     if (showPersons) {
@@ -76,7 +81,8 @@ class App extends Component {
     return (
       <div className="App">
         <input text='text' onChange={lengthHandler} value={para}/>
-        <Validation para={para.length} /><br/>
+        <Validation paraLength={para.length} /><br/>
+        {charList}
         <hr />
         <button onClick={togglePersons}>Show People</button>
         {persons}

@@ -4,7 +4,7 @@ const Char = props => {
 
     return (
         <div className='Char'>
-            render Char comps here 
+            {props.character} 
         </div>
     )
 }
