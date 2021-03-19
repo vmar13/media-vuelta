@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
 import Char from './Char/Char';
 
-const StyledButton = styled.button`
-  background-color: green;
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
+// const StyledButton = styled.button`
+//   background-color: ${props => props.alt ? 'red' : 'green'};
+//   color: white;
+//   font: inherit;
+//   border: 1px solid blue;
+//   padding: 8px;
+//   cursor: pointer;
   
-  &:hover {
-    background-color: lightgreen;
-    color: black;
-  }`
+//   &:hover {
+//     background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
+//     color: black;
+//   }`
 
 class App extends Component {
 
@@ -135,7 +135,12 @@ class App extends Component {
         <Validation paraLength={para.length} /><br/>
         {charList}
         <hr />
-        <StyledButton onClick={togglePersons}>Show People</StyledButton>
+        <button className='button' onClick={togglePersons}>
+          Show People
+        </button>
+        {/* <StyledButton alt={this.state.showPersons} onClick={togglePersons}>
+          Show People
+        </StyledButton> */}
         {persons}
       </div>
     );
