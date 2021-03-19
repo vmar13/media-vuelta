@@ -74,18 +74,20 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
+    // const style = {
+    //   backgroundColor: 'green',
+    //   color: 'white',
+    //   font: 'inherit',
+    //   border: '1px solid blue',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   ':hover': {
+    //     backgroundColor: 'lightgreen',
+    //     color: 'black'
+    //   }
+    // };
+
+    let btnClass = [classes.Button];
 
     const { showPersons, para } = this.state;
     const { nameChangedHandler, togglePersons, deletePersonHandler, lengthHandler, deleteCharHandler } = this;
@@ -112,11 +114,7 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      btnClass.push(classes.Red);
     } 
     //This is a class list
     // let classes = ['red', 'bold'].join(' ');
@@ -134,9 +132,8 @@ class App extends Component {
         <input text='text' onChange={lengthHandler} value={para}/>
         <Validation paraLength={para.length} /><br/>
         {charList}
-        <hr />
-        <button className={classes.button} onClick={togglePersons}>
-          Show People
+        <button className={btnClass.join(' ')} onClick={togglePersons}>
+          Toggle People
         </button>
         {/* <StyledButton alt={this.state.showPersons} onClick={togglePersons}>
           Show People
