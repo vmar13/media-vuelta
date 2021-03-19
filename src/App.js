@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 // import styled from 'styled-components';
 import Person from './Person/Person';
 import Validation from './Validation/Validation';
@@ -120,22 +120,22 @@ class App extends Component {
     } 
     //This is a class list
     // let classes = ['red', 'bold'].join(' ');
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red'); //classes = ['red']
+      assignedClasses.push(classes.red); //classes = ['red']
     }
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); //classes = ['red', 'bold']
+      assignedClasses.push(classes.bold); //classes = ['red', 'bold']
     }
 
     return (
-      <div className="App">
-        <p className={classes.join(' ')}>This is really working!</p>
+      <div className={classes.App}>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
         <input text='text' onChange={lengthHandler} value={para}/>
         <Validation paraLength={para.length} /><br/>
         {charList}
         <hr />
-        <button className='button' onClick={togglePersons}>
+        <button className={classes.button} onClick={togglePersons}>
           Show People
         </button>
         {/* <StyledButton alt={this.state.showPersons} onClick={togglePersons}>
