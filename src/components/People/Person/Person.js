@@ -17,13 +17,13 @@ import classes from './Person.css';
 // }`
 
 const Person = (props) => {
-    const { nombre, trabajo, changed, removePerson } = props
+    const { nombre, trabajo, changed, id } = props
     
     return ( 
          //   {/* <div className='Person' style={style}> */}
         <div className={classes.Person}>
-            <p onClick={removePerson}>Me llamo {nombre} y soy un/a {trabajo}.</p>
-            <input type='text' onChange={changed} value={nombre} />
+            <p onClick={() => props.removePerson(props.index)}>Me llamo {nombre} y soy un/a {trabajo}.</p>
+            <input type='text' onChange={(event) => changed(event, id)} value={nombre} />
         </div>
     )
 }

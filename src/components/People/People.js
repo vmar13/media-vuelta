@@ -4,10 +4,13 @@ import Person from './Person/Person';
 const People = props => props.people.map((person, index) => {
         return <Person 
           key={person.id}
-          removePerson={() => props.deletePersonHandler(index)}
+          // removePerson={() => props.deletePersonHandler(index)}
+          index={index}
+          id={person.id}
+          removePerson={props.removePerson}
           nombre={person.nombre}
           trabajo={person.trabajo}
-          changed={(event) => props.nameChangedHandler(event, person.id)} />
+          changed={props.changed} />
       })
 
 

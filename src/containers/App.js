@@ -83,14 +83,10 @@ class App extends Component {
     let persons = null;
 
     if (showPersons) {
-      persons = (
-        <div>
-          <People 
-          people={this.state.persons}
-          removePerson={deletePersonHandler}
-          changed={nameChangedHandler} />
-        </div>
-      );
+      persons = <People 
+        people={this.state.persons}
+        removePerson={deletePersonHandler}
+        changed={nameChangedHandler} />
     } 
 
     return (
@@ -99,6 +95,7 @@ class App extends Component {
           Show People
         </StyledButton> */}
         <Cockpit 
+          people={this.state.persons}
           togglePersons={togglePersons}
           showPersons={showPersons} />
         {persons}
