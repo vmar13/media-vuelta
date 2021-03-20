@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 // import styled from 'styled-components';
-import Person from '../components/People/Person/Person';
+import People from '../components/People/People';
 
 
 // const StyledButton = styled.button`
@@ -86,34 +86,16 @@ class App extends Component {
     if (showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <Person 
-              key={person.id}
-              removePerson={() => deletePersonHandler(index)}
-              nombre={person.nombre}
-              trabajo={person.trabajo}
-              changed={(event) => nameChangedHandler(event, person.id)} />
-          })}
+          <People 
+          people={this.state.persons}
+          removePerson={deletePersonHandler}
+          changed={nameChangedHandler} />
         </div>
       );
-      btnClass.push(classes.Red);
     } 
-    //This is a class list
-    // let classes = ['red', 'bold'].join(' ');
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red); //classes = ['red']
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold); //classes = ['red', 'bold']
-    }
 
     return (
       <div className={classes.App}>
-        <p className={assignedClasses.join(' ')}>This is really working!</p>
-        <button className={btnClass.join(' ')} onClick={togglePersons}>
-          Toggle People
-        </button>
         {/* <StyledButton alt={this.state.showPersons} onClick={togglePersons}>
           Show People
         </StyledButton> */}
