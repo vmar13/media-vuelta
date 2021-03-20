@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 // import styled from 'styled-components';
 import People from '../components/People/People';
+import Cockpit from '../components/Cockpit/Cockpit'
 
 
 // const StyledButton = styled.button`
@@ -76,8 +77,6 @@ class App extends Component {
     //   }
     // };
 
-    let btnClass = [classes.Button];
-
     const { showPersons, para } = this.state;
     const { nameChangedHandler, togglePersons, deletePersonHandler } = this;
 
@@ -99,6 +98,9 @@ class App extends Component {
         {/* <StyledButton alt={this.state.showPersons} onClick={togglePersons}>
           Show People
         </StyledButton> */}
+        <Cockpit 
+          togglePersons={togglePersons}
+          showPersons={showPersons} />
         {persons}
       </div>
     );
