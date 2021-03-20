@@ -95,9 +95,9 @@ class App extends Component {
           Show People
         </StyledButton> */}
         <Cockpit 
+          showPersons={showPersons} 
           people={this.state.persons}
-          togglePersons={togglePersons}
-          showPersons={showPersons} />
+          togglePersons={togglePersons} />
         {persons}
       </div>
     );
