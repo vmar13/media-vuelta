@@ -3,6 +3,22 @@ import React from 'react';
 // import styled from 'styled-components';
 import classes from './Person.css';
 
+class Person extends React.Component {
+    render() {
+        const { nombre, trabajo, changed, id } = this.props
+    
+        return ( 
+            //   {/* <div className='Person' style={style}> */}
+            <div className={classes.Person}>
+                <p onClick={() => this.props.removePerson(this.props.index)}>Me llamo {nombre} y soy un/a {trabajo}.</p>
+                <input type='text' onChange={(event) => changed(event, id)} value={nombre} />
+            </div>
+        )
+    }
+}
+
+export default Person;
+
 //StyledDiv is a valid React component
 // const StyledDiv = styled.div`
 //     width: 60%;
@@ -15,17 +31,3 @@ import classes from './Person.css';
 //     @media (min-width: 500px) {
 //         width: 450px;
 // }`
-
-const Person = (props) => {
-    const { nombre, trabajo, changed, id } = props
-    
-    return ( 
-         //   {/* <div className='Person' style={style}> */}
-        <div className={classes.Person}>
-            <p onClick={() => props.removePerson(props.index)}>Me llamo {nombre} y soy un/a {trabajo}.</p>
-            <input type='text' onChange={(event) => changed(event, id)} value={nombre} />
-        </div>
-    )
-}
-
-export default Person;

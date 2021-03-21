@@ -1,17 +1,43 @@
 import React from 'react';
 import Person from './Person/Person';
 
-const People = props => props.people.map((person, index) => {
+class People extends React.Component {
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('[People.js] getDerivedStateFromProps');
+  //   return state;
+  // }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('People.js] shouldComponentUpdate');
+    return true;
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[People.js] getSnapShotBeforeUpdate');
+  }
+
+  componentDidUpdate() {
+    console.log('[People.js] componentDidUpdate');
+  }
+
+  render() {
+    console.log('[People.js] rendering...')
+    const { removePerson, changed } = this.props
+
+    return (
+      this.props.people.map((person, index) => {
         return <Person 
           key={person.id}
           // removePerson={() => props.deletePersonHandler(index)}
           index={index}
           id={person.id}
-          removePerson={props.removePerson}
+          removePerson={removePerson}
           nombre={person.nombre}
           trabajo={person.trabajo}
-          changed={props.changed} />
+          changed={changed} />
       })
-
+    )
+  }
+}
 
 export default People;
