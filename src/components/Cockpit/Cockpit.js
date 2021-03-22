@@ -18,6 +18,12 @@ const Cockpit = props => {
     //is made to the people array
 // }, [props.people]);
 
+    useEffect(() => {
+        console.log('[Cockpit.js] 2nd useEffect');
+        return () => {
+            console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+        }
+    });
 
     //This is a class list; let assignedClasses = ['red', 'bold'].join(' ');
     const assignedClasses = [];
