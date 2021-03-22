@@ -9,7 +9,12 @@ const Cockpit = props => {
         setTimeout(() => {
             alert('saved data to cloud')
         }, 1000);
-    }, [props.people]);
+    }, []);
+    //can include dependencies like below with people array, but
+    //that will cause the useEffect hook to run every time a change 
+    //is made to the people array
+// }, [props.people]);
+
 
     //This is a class list; let assignedClasses = ['red', 'bold'].join(' ');
     const assignedClasses = [];
