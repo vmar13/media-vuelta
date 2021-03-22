@@ -20,6 +20,11 @@ class People extends React.Component {
     console.log('[People.js] componentDidUpdate');
   }
 
+  //This lifecycle hook will run right BEFORE the comp unmounts
+  componentWillUnmount() {
+    console.log('[People.js] componentWillUnmount');
+  }
+
   render() {
     console.log('[People.js] rendering...')
     const { removePerson, changed } = this.props

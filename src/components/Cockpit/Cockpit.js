@@ -9,8 +9,8 @@ const Cockpit = props => {
         setTimeout(() => {
             alert('saved data to cloud')
         }, 1000);
-    }, []);
-    //can include dependencies like below with people array, but
+    }, []); //Empty array as sec arg will cause hook to run once FIRST TIME
+    //Can also include dependencies like below with people array, but
     //that will cause the useEffect hook to run every time a change 
     //is made to the people array
 // }, [props.people]);
