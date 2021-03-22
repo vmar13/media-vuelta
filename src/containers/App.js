@@ -28,6 +28,7 @@ class App extends Component {
     ],
     bolivia: 'La Paz',
     showPersons: false,
+    showCockpit: true,
     para: ''
 }
   
@@ -103,10 +104,18 @@ class App extends Component {
         {/* <StyledButton alt={this.state.showPersons} onClick={togglePersons}>
           Show People
         </StyledButton> */}
-        <Cockpit 
-          showPersons={showPersons} 
-          people={this.state.persons}
-          togglePersons={togglePersons} />
+        <button
+          onClick={() => this.setState({ showCockpit: false })}
+        >
+          Remove cockpit
+        </button>
+        {this.state.showCockpit ? 
+         <Cockpit 
+         showPersons={showPersons} 
+         people={this.state.persons}
+         togglePersons={togglePersons} />
+         : null 
+        }
         {persons}
       </div>
     );
